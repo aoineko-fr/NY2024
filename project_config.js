@@ -132,10 +132,10 @@ AppID = "EX";
 BuildLibrary = false;
 
 //-- Prepare program for debug (boolean)
-Debug = false;
+Debug = true;
 
 //-- Move debug symbols to deployement folder (boolean)
-DebugSymbols = false;
+DebugSymbols = true;
 
 //-- Assembler code optimizer (string)
 //   - None

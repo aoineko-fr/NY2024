@@ -58,6 +58,7 @@ struct Language
 #include "font/font_bios_hangul.h"
 #include "font/font_bios_cyrillic.h"
 #include "font/font_bios_arabic2.h"
+#include "font/font_mgl_sample6.h"
 
 // Sprite by GrafxKid (https://opengameart.org/content/super-random-sprites)
 #include "content/data_sprt_16or.h"
@@ -393,9 +394,10 @@ void main()
 
 		Print_DrawTextAlignAt(x, y, Loc_GetText(TEXT_TITLE), PRINT_ALIGN_CENTER);
 	}
-	Print_SetColor(7, 0);
-	Print_DrawTextAt(2, (u8)(212-11), "MSXgl");
-	Print_DrawTextAlignAt((u8)(255-6), (u8)(212-11), "Pixel Phenix", PRINT_ALIGN_RIGHT);
+	Print_SetBitmapFont(g_Font_MGL_Sample6);
+	Print_SetMode(PRINT_MODE_BITMAP_TRANS);
+	Print_SetColor(5, 0);
+	Print_DrawTextAt(1, 199, MSX_GL);
 
 	// Initialize Sprite
 	VDP_EnableSprite(TRUE);
