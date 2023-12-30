@@ -86,6 +86,8 @@ const struct Language g_Language[LANG_MAX] =
 // Sample level tiles map
 const u8 g_TileMap[] =
 {
+	 OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, 136, 137, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, 
+	 OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, 168, 169, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO,
 	 OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, 
 	 OOO, OOO, OOO, 132, 133, 134, 135, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, 
 	 OOO, OOO, OOO, 164, 165, 166, 167, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, OOO, 132, 133, 134, 135, OOO, OOO, OOO, OOO, OOO, OOO, OOO, 
@@ -111,7 +113,6 @@ const u8 g_TileMap[] =
 	  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65, 
 	  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97, 
 	  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65,  66,  65, 
-	  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97,  98,  97, 
 };
 
 //
@@ -165,7 +166,7 @@ const u8 g_SnowPattern[] =
 	0x00, /* ........ */ 
 	0x01, /* .......# */ 
 
-// ---- Layer[4] (16x16 0,0 1,1 inc 2)
+// ---- Layer[1] (16x16 0,0 1,1 inc 2)
 // Sprite[4] (offset:0)
 	0x00, /* ........ */ 
 	0x00, /* ........ */ 
@@ -202,6 +203,44 @@ const u8 g_SnowPattern[] =
 	0x00, /* ........ */ 
 	0x00, /* ........ */ 
 	0x00, /* ........ */ 
+
+// ---- Layer[2] (16x16 0,0 1,1 inc 2)
+// Sprite[8] (offset:0)
+	0x80, /* 1......0 */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+// Sprite[9] (offset:8)
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+// Sprite[10] (offset:16)
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+// Sprite[11] (offset:24)
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x00, /* ........ */ 
+	0x01, /* .......# */ 
 };
 
 // Snow fall X coordinate offset
@@ -215,6 +254,15 @@ const i8 g_FallOffset[] =
 
 // Sprite attribute table addresses
 const u16 g_SATAddr[] = { ADDR_SAT1, ADDR_SAT2 };
+
+// Sprites position
+const VectorU8 g_SprtPos[] = {
+	{  56, 143 },
+	{  16, 167 },
+	{  96, 167 },
+	{ 176, 167 },
+	{ 208, 167 },
+};
 
 //=============================================================================
 // VARIABLES
@@ -310,7 +358,6 @@ void UpdateSAT0()
 		sprt->X += g_FallOffset[offset & 0x3F];
 		offset += 2;
 		sprt->Y = (sprt->Y + 1) & 0x7F;
-		// VDP_SetSpritePosition(j, x, sprt->Y);
 	}
 	VDP_WriteVRAM((const u8*)g_SpriteData0, g_SpriteAtributeLow, g_SpriteAtributeHigh, 32 * 4);
 }
@@ -321,7 +368,7 @@ void UpdateSAT1()
 {
 	SetCurrentSAT(1);
 	u8 anim = (g_Frame / 4) % 6;
-	loop(j, 4)
+	loop(j, 5)
 	{
 		u8 i = j * 2;
 		u8 pat = PATTERN_16OR_1ST + (anim * 4);
@@ -362,9 +409,9 @@ void main()
 	Tile_SetDrawPage(0);
 	Tile_SelectBank(0);
 	Tile_FillScreen(6);
-	Tile_DrawMapChunk( 0, 15, g_TreeTileMap, 6, 6); // Draw tree tilemap
-	Tile_DrawMapChunk( 3, 15, g_TreeTileMap, 6, 6);
-	Tile_DrawMapChunk(11, 15, g_TreeTileMap, 6, 6);
+	Tile_DrawMapChunk( 0, 17, g_TreeTileMap, 6, 6); // Draw tree tilemap
+	Tile_DrawMapChunk( 3, 17, g_TreeTileMap, 6, 6);
+	Tile_DrawMapChunk(11, 17, g_TreeTileMap, 6, 6);
 	Tile_DrawScreen(g_TileMap); // Draw the whole screen tilemap
 	Tile_DrawBlock(10, 8, 4, 4, 4, 2); // Draw a cloud (4x2 tiles)
 
@@ -397,20 +444,33 @@ void main()
 	Print_SetBitmapFont(g_Font_MGL_Sample6);
 	Print_SetMode(PRINT_MODE_BITMAP_TRANS);
 	Print_SetColor(5, 0);
-	Print_DrawTextAt(1, 199, MSX_GL);
+	Print_DrawTextAt(1, 203, MSX_GL);
 
 	// Initialize Sprite
 	VDP_EnableSprite(TRUE);
 	VDP_SetSpriteFlag(VDP_SPRITE_SIZE_16);
-	VDP_LoadSpritePattern(g_SnowPattern, 0, 4 * 2);
+	VDP_LoadSpritePattern(g_SnowPattern, 0, 4 * 3);
 	SetCurrentSAT(0);
 	loop(j, 32)
 	{
 		struct VDP_Sprite* sprt = &g_SpriteData0[j];
 		sprt->X = Math_GetRandom8();
 		sprt->Y = Math_GetRandom8() / 2;
-		sprt->Pattern = (j & 1) ? 0 : 4;
-		sprt->Color = 9;
+		switch(j % 3)
+		{
+		case 0:
+			sprt->Pattern = 0;
+			sprt->Color = 9;
+			break;
+		case 1:
+			sprt->Pattern = 4;
+			sprt->Color = 9;
+			break;
+		default:
+			sprt->Pattern = 8;
+			sprt->Color = 3;
+			break;
+		}
 		VDP_SetSpriteExUniColor(j, sprt->X, sprt->Y, sprt->Pattern, sprt->Color);
 	}
 	u8 chrSprt = PATTERN_16OR_1ST;
@@ -429,10 +489,10 @@ void main()
 		VDP_LoadSpritePattern(g_DataSprt16or + (i * 2 + 37) * 8, chrSprt++, 1);
 	}
 	SetCurrentSAT(1);
-	loop(j, 4)
+	loop(j, 5)
 	{
-		u8 x = 32 + j * 64;
-		u8 y = 151;
+		u8 x = g_SprtPos[j].x;
+		u8 y = g_SprtPos[j].y;
 		u8 i = j * 2;
 
 		struct VDP_Sprite* sprt = &g_SpriteData1[i];

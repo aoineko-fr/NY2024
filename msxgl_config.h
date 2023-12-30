@@ -333,7 +333,7 @@
 #define TILE_HEIGHT					8		// Tile height
 #define TILE_BPP					4		// Screen bits-per-pixel
 #define TILE_SCREEN_WIDTH			256		// Screen width
-#define TILE_SCREEN_HEIGHT			212		// Screen height
+#define TILE_SCREEN_HEIGHT			216		// Screen height
 #define TILE_USE_SKIP				TRUE	// Skip drawing of a given index
 #define TILE_SKIP_INDEX				0		// The index tile to skip
 
