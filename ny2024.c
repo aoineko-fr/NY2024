@@ -285,7 +285,7 @@ u8 g_State = 0;
 // H-Blank handler
 void HBlankHandler()
 {
-	if(g_State)
+	if (g_State)
 		VDP_SetSpriteAttributeTable(g_SATAddr[1]);
 }
 
@@ -317,7 +317,7 @@ void InterruptHook()
 // H_TIMI interrupt hook
 void VBlankHook()
 {
-	if(g_State)
+	if (g_State)
 		VDP_SetSpriteAttributeTable(g_SATAddr[0]);
 
 	// Update music
@@ -331,7 +331,7 @@ void VBlankHook()
 // Wait for V-Blank period
 void WaitVBlank()
 {
-	while(g_VBlank == 0) {}
+	while (g_VBlank == 0) {}
 	g_VBlank = 0;
 	g_Frame++;
 }
@@ -402,7 +402,7 @@ void main()
 	Tile_FillBank(3, 9);
 	Tile_LoadBank(0, g_DataBG4b, sizeof(g_DataBG4b) / TILE_CELL_BYTES);
 	Tile_LoadBank(2, g_DataBG4b, sizeof(g_DataBG4b) / TILE_CELL_BYTES);
-	for(u8 i = 0; i < 15; ++i)
+	for (u8 i = 0; i < 15; ++i)
 		VDP_SetPaletteEntry(i + 1, *(u16*)&g_DataBG4b_palette[i*2]);
 
 	// Draw background
@@ -456,7 +456,7 @@ void main()
 		struct VDP_Sprite* sprt = &g_SpriteData0[j];
 		sprt->X = Math_GetRandom8();
 		sprt->Y = Math_GetRandom8() / 2;
-		switch(j % 3)
+		switch (j % 3)
 		{
 		case 0:
 			sprt->Pattern = 0;
@@ -513,13 +513,13 @@ void main()
 
 	// Main loop
 	g_State = 1;
-	while(!Keyboard_IsKeyPressed(KEY_ESC))
+	while (!Keyboard_IsKeyPressed(KEY_ESC))
 	{
 		// Wait V-Blank
 		WaitVBlank();
 
 		// Update sprites
-		if((g_Frame & 1) == 0)
+		if ((g_Frame & 1) == 0)
 			UpdateSAT0();
 		else
 			UpdateSAT1();
